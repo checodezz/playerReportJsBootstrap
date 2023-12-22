@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Player Details</title>
+</head>
+
+<body>
+  <header>
+    <a href="index.html">Cricket Player Database</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="players.html">Players</a></li>
+        <li><a href="report.html">Report</a></li>
+
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Player Details</h2>
+    <section id="playerDetails">
+
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy;Company Name. All rights reserved.</p>
+  </footer>
+
+  <!-- Vanilla JS Logic -->
+  <script>
+    //database 
+
+    let players = [{
+      id: '1',
+      number: 'Player 1',
+      country: 'India',
+      role: 'Batsman'
+    },
+    {
+      id: '2',
+      number: 'Player 2',
+      country: 'Australia',
+      role: 'Bowler'
+    }]
+
+    // console.log(window.location.href)
+    // let url = window.location.href
+
+    function getParams(id) {
+      let url = new URL(window.location.href)
+      console.log(url)
+      return url.searchParams.get(id)
+    }
+    let foundedId = getParams('id')
+
+    //Finding the id in the database
+    let playerId;
+    for (let i = 0; i < players.length; i++) {
+      if (players[i].id === foundedId) {
+        playerId = players[i]
+      }
+    }
+    console.log(playerId)
+
+    //displaying the details on the view
+    let playerDetailElement = document.getElementById('playerDetails')
+    if (players) {
+      playerDetailElement.innerHTML = `
+      <h2>${playerId.number}</h2>
+      <p><strong>Country:</strong> ${playerId.country}</p>
+      <p><strong>Role:</strong> ${playerId.role}</p>
+      `
+    } else {
+      playerDetailElement.innerHTML = 'Player not found'
+    }
+  </script>
+</body>
+
+</html>
