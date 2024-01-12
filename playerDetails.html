@@ -46,19 +46,26 @@
   <!-- Vanilla JS Logic -->
   <script>
     //database 
-
-    let players = [{
-      id: '1',
-      number: 'Player 1',
-      country: 'India',
-      role: 'Batsman'
-    },
-    {
-      id: '2',
-      number: 'Player 2',
-      country: 'Australia',
-      role: 'Bowler'
-    }]
+    const players = [
+      {
+        id: 1,
+        name: 'Akanksha',
+        country: 'India',
+        role: 'Batsman'
+      },
+      {
+        id: 2,
+        name: 'Pat Cummins',
+        country: 'Australia',
+        role: 'Bowler'
+      },
+      {
+        id: 3,
+        name: 'Virat Kohli',
+        country: 'India',
+        role: 'Batsman'
+      }
+    ];
 
     // console.log(window.location.href)
     // let url = window.location.href
@@ -73,7 +80,7 @@
     //Finding the id in the database
     let playerId;
     for (let i = 0; i < players.length; i++) {
-      if (players[i].id === foundedId) {
+      if (players[i].id == foundedId) {
         playerId = players[i]
       }
     }
@@ -84,7 +91,7 @@
     if (playerId) {
       playerDetailElement.innerHTML = `
       <div class='card '>
-      <h2 class='card-header'>${playerId.number}</h2>
+      <h2 class='card-header'>${playerId.name}</h2>
       <div class='card-body'>
       <p><strong>Country:</strong> ${playerId.country}</p>
       <p><strong>Role:</strong> ${playerId.role}</p>
