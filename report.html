@@ -36,39 +36,76 @@
     </nav>
   </header>
 
-  <main>
-    <section class="container">
-      <h2>Player Report</h2>
-      <div class="row">
-        <div class="col-md-6 my-6">
-          <div class="card">
-            <div class="card-header">
-              <h2>Top Scorer</h2>
-            </div>
-            <div class="card-body">
-              <p><strong>Name</strong> : Player 1</p>
-              <p><strong>Total Runs</strong> : 12000</p>
-            </div>
-          </div>
-        </div>
+  <section class="container mt-4">
+    <h1>Players Report</h1>
+    <hr>
 
-        <div class="col-md-6 my-6">
-          <div class="card">
-            <div class="card-header">
-              <h2>Best Bowler</h2>
-            </div>
-            <div class="card-body">
-              <p><strong>Name</strong> : Player 2</p>
-              <p><strong>Total Wickets</strong> : 500</p>
-            </div>
-          </div>
-        </div>
+    <div class="row" id="player-report">
 
 
-       
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <script>
+    function generatePlayerReport() {
+      const topScorer = {
+        name: 'Akanksha',
+        totalRuns: 12000,
+      }
+
+      const bestBowler = {
+        name: 'Tanay',
+        totalWickets: 500
+      }
+
+      function createCard(cardObj) {
+        const playerReportDiv = document.querySelector('#player-report')
+
+        const col = document.createElement('div')
+        col.className = 'col-md-6'
+
+        const card = document.createElement('div')
+        card.className = 'card mb-3'
+
+        const cardHeader = document.createElement('div')
+        cardHeader.className = 'card-header'
+
+        const h2 = document.createElement('h2')
+        h2.textContent = cardObj === topScorer ? 'Top Scorer' : 'Best Bowler'
+
+        cardHeader.appendChild(h2)
+
+        const cardBody = document.createElement('div')
+        cardBody.className = 'card-body'
+
+        const playerName = document.createElement('p')
+        playerName.className = 'card-text'
+        playerName.innerHTML = `<strong>Name: </strong> ${cardObj.name}`
+
+        const playerStats = document.createElement('p')
+        playerStats.className = 'card-text';
+        playerStats.innerHTML = cardObj === topScorer ?
+          `<strong>Total Runs: </strong> ${cardObj.totalRuns}` : ` <strong>Total Wickets: </strong> ${cardObj.totalWickets}
+`
+
+        cardBody.appendChild(playerName);
+        cardBody.appendChild(playerStats)
+
+        card.appendChild(cardHeader)
+        card.appendChild(cardBody)
+
+        col.append(card)
+
+
+        playerReportDiv.appendChild(col)
+      }
+
+      createCard(topScorer)
+      createCard(bestBowler)
+
+    }
+    generatePlayerReport()
+  </script>
 
 
 </body>

@@ -38,7 +38,7 @@
 
   <main class="container my-2">
     <h2>Player Details</h2>
-    <section id="playerDetails">
+    <section id="playerDetails" class="row">
 
     </section>
   </main>
@@ -46,33 +46,34 @@
   <!-- Vanilla JS Logic -->
   <script>
     //database 
-    const players = [
-      {
-        id: 1,
-        name: 'Akanksha',
-        country: 'India',
-        role: 'Batsman'
-      },
-      {
-        id: 2,
-        name: 'Pat Cummins',
-        country: 'Australia',
-        role: 'Bowler'
-      },
-      {
-        id: 3,
-        name: 'Virat Kohli',
-        country: 'India',
-        role: 'Batsman'
-      }
+    const players = [{
+      id: 1,
+      name: 'Akanksha',
+      country: 'India',
+      role: 'Batsman'
+    },
+    {
+      id: 2,
+      name: 'Pat Cummins',
+      country: 'Australia',
+      role: 'Bowler'
+    },
+    {
+      id: 3,
+      name: 'Virat Kohli',
+      country: 'India',
+      role: 'Batsman'
+    }
     ];
+
+
 
     // console.log(window.location.href)
     // let url = window.location.href
 
     function getParams(id) {
       let url = new URL(window.location.href)
-      console.log(url)
+
       return url.searchParams.get(id)
     }
     let foundedId = getParams('id')
@@ -87,7 +88,7 @@
     console.log(playerId)
 
     //displaying the details on the view
-    let playerDetailElement = document.getElementById('playerDetails')
+    /* let playerDetailElement = document.getElementById('playerDetails')
     if (playerId) {
       playerDetailElement.innerHTML = `
       <div class='card '>
@@ -100,7 +101,43 @@
       `
     } else {
       playerDetailElement.innerHTML = 'Player not found'
-    }
+    } */
+    const playerDetails = document.querySelector('#playerDetails')
+
+    const col = document.createElement('div')
+    col.className = 'col-md-6'
+
+    const card = document.createElement('div')
+    card.className = 'card'
+
+    const cardHeader = document.createElement('div')
+    cardHeader.className = 'card-header'
+
+    const h2 = document.createElement('h2')
+    h2.textContent = playerId.name
+
+    cardHeader.appendChild(h2)
+
+    const cardBody = document.createElement('div')
+    cardBody.className = 'card-body'
+
+    const country = document.createElement('p')
+    country.className = 'card-text'
+    country.innerHTML = `<strong>Country: </strong> ${playerId.country}`
+
+    const role = document.createElement('p')
+    role.className = 'card-text'
+    role.innerHTML = `<strong>Role: </strong> ${playerId.role}`
+
+    cardBody.appendChild(country)
+    cardBody.appendChild(role)
+
+    card.appendChild(cardHeader)
+    card.appendChild(cardBody)
+
+    col.appendChild(card)
+
+    playerDetails.appendChild(col)
   </script>
 </body>
 
